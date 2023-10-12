@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>DOM Placement</title>
+	<script>
+		function changeMe(){
+      let elem = document.createElement('input');
+      elem.setAttribute('type', 'range');
+
+      // document.getElementById('everything').appendChild(elem);
+
+      //right after text
+      // document.getElementById('text').appendChild(elem);
+
+      //insert before
+      // $$(body, 0).insertBefore(elem, $$('body', 0).firstChild);
+
+      //$('everything').insertBefore(elem, $('moreText'));
+
+      //remove child
+      //$('everything').removeChild($('buttons'));
+
+      //replace child
+      // if($('moreText')){
+      //   $('everything').replaceChild(elem, $('moreText'));
+      // }
+
+      //clone node
+      // let c = $('everything').cloneNode(true);
+      // console.log(c.getElementById(''));
+      // $$('body', 0).appendChild(c);
+
+      //cannot use on project
+      $('moreText').innerHTML += "<h1>hello</h1> by";
+		}
+
+    function $(id){
+      return document.getElementById(id);
+    }
+
+    function $$(tag, num){
+      return document.getElementsByTagName(tag)[num];
+    }
+	
+	</script>
+</head>
+<body>
+  <div id="everything">
+    <div id="buttons" style="position:absolute; top:8px; left:200px">
+      <button onclick="changeMe();">Do It!</button>
+    </div>
+
+    <div id="text" style="border:2px solid red;width:10em;">
+      Text
+    </div>
+    
+    <div id="moreText" style="border:2px solid orange;width:10em;">
+      More text
+    </div>
+   
+    <hr/>
+  </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>DOM Creation</title>
+<script>
+	//some possible methods/props you will use! (know them!)
+	//createElement, createTextNode, setAttribute, appendChild, replaceChild, removeChild, cloneNode
+	//childNodes[], firstChild, nodeType, nodeName, nodeValue, 
+	//getElementById, getElementsByTagName, getElementsByName, getElementsByClassName
+	
+	function createText(){
+		let x = document.createElement('h1');
+		x.setAttribute('id', 'fred');
+		x.setAttribute('style', 'color:green');
+		let t = document.createTextNode("hello mother dearest");
+		x.appendChild(t);
+		document.getElementsByTagName('body')[0].appendChild(x);
+		let img = document.createElement('img');
+		img.setAttribute('src', 'california.jpg');
+		document.getElementsByTagName('body')[0].appendChild(img);
+		let label = document.createElement('label');
+		label.setAttribute('for', 'test');
+		let text = document.createTextNode("testyTime");
+		label.appendChild(text);
+		let rad = document.createElement('input');
+		rad.setAttribute('type', 'radio');
+		rad.setAttribute('name', 'john');
+		label.appendChild(rad);
+		document.getElementsByTagName('body')[0].appendChild(label);
+
+	}
+
+</script>
+</head>
+<body>
+<div id="buttons" style="position:absolute; top:8px; left:200px">
+  <button onclick="createText();">Create It!</button>
+</div>
+<body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

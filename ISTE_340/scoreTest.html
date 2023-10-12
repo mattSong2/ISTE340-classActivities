@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8"/>
+    <title></title>
+    <head>
+        <script>
+            'use strict';
+            console.log('let scope test start');
+
+            let x = 0;
+            console.log('fromt the start ', x);
+
+            const letTest = function(){
+                let x = 76
+                console.log('in the function', x);
+                if(true){
+                    let x = 'uh huj';
+                    console.log('in the if', x);
+                }
+            }
+
+            letTest();
+            console.log('from the end', x);
+            console.log('end let scope test');
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

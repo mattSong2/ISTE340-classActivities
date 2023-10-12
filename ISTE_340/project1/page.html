@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Project</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="assets/js/cookies.js"></script>
+    <script type="text/javascript">
+
+
+        // tests if browser is up to date, if not sends them to legacy.html
+        if(!document.getElementById){
+            window.location = 'legacy.html';
+        }
+
+        // data set one
+        var data = {
+            first: ["Build a D&D character!", "What are you interested in?", "--Select--", "melee", "magic"],
+            melee: ["What type of melee?", "--Select--", "tank", "strategic", "stealthy"],
+            magic: ["What type of magic?", "--Select--", "damage", "support"],
+            damage: ["What kind of damage?", "--Select--", "explosive", "enchantment", "beastial"],
+            support: ["What kind of support?", "--Select--", "divine", "musical"],
+            tank: ["What kind of tank?", "--Select--", "barbaric", "spiritual", "unpredictable"],
+            strategic: ["What kind of strategic fighter?", "--Select--", "champion", "cavelier", "drunk"],
+            stealthy: ["How stealthy do you want to be?", "--Select--", "professional", "thief-like", "ghostly"],
+            explosive: ["What kind of an explosion?", "--Select--", "BIG!!", "necrotic", "imaginary"],
+            enchantment: ["What type of enchantment?", "--Select--", "weapons", "mental", "transmuting"],
+            beastial: ["What kind of beast?", "--Select--", "elemental", "fey", "celestial"],
+            divine: ["What type of divine domain?", "--Select--", "benevolent", "studious", "evil"],
+            musical: ["What kind of music?", "--Select--", "eloquent", "olden", "folklore"]
+        }
+
+        // end options for data set one
+        var end = {
+            barbaric: ["You are a frenzy barbarian!", "assets/frenzy.png"],
+            spiritual: ["You are a zealot barbarian!", "assets/zealot.png"],
+            unpredictable: ["You are a wild magic barbarian!", "assets/wild.jpg"],
+            champion: ["You are a champion gladiator!", "assets/champion.png"],
+            cavelier: ["You are a strong cavelier!", "assets/cavalier.png"],
+            drunk: ["You are a drunken fist monk!", "assets/drunk.jpg"],
+            professional: ["You are an assassian rogue!", "assets/assassin.png"],
+            'thief-like': ["You are a common thief rogue!", "assets/thief.png"],
+            ghostly: ["You are a phantom rogue!", "assets/phantom.jpg"],
+            "BIG!!": ["You are a conjurer!", "assets/conjurer.jpg"],
+            necrotic: ["You are a necromancer!", "assets/necromancer.png"],
+            imaginary: ["You are an illusionist!", "assets/illusionist.png"],
+            weapons: ["You are a paladin sworn to the Oath of Glory!","assets/paladin.png"],
+            mental: ["You are a charmer!", "assets/charmer.jpg"],
+            transmuting: ["You are a transmutator!","assets/transmutator.png"],
+            elemental: ["You are a moon druid!", "assets/moon.png"],
+            fey: ["You are a shepherd druid!", "assets/shepherd.jpg"],
+            celestial: ["You are a star druid!", "assets/star.png"],
+            benevolent: ["You are a cleric in the Life Domain!", "assets/life.jpg"],
+            studious: ["You are a cleric in the Knowledge Domain!", "assets/knowledge.png"],
+            evil: ["You are a warlock pacted to the Fiend!", "assets/fiend.jpg"],
+            eloquent: ["You are a bard of eloquence!", "assets/eloquence.png"], 
+            olden: ["You are a bard of creation!", "assets/creation.jpg"],
+            folklore: ["You are a bard of lore!", "assets/lore.jpg"]
+        }
+
+        //second data set, to use this one, comment the top one out and uncomment this one
+        // var data = {
+        //     first: ["Make breakfast!", "What is the main ingredient?", "--Select--", "waffles", "cereal"],
+
+        //     waffles: ["What kind?", "--Select--", "regular", "chocolate chip"],
+        //     cereal: ["What brand?", "--Select--", "cheerios", "lucky charms"],
+
+        //     regular: ["What topping?", "--Select--", "butter", "syrup"],
+        //     'chocolate chip': ["What topping?", "--Select", "sprinkles", "whipped cream"],
+        //     cheerios: ["What liquid?", "--Select--", "milk", "orange juice"],
+        //     'lucky charms': ["More marshmallows or cereal?", "--Select--", "marshmallows", "rice cakes"],
+
+        //     butter: ["What type of butter?", "--Select--", "cinnamon", "normal"],
+        //     syrup: ["How much syrup?", "--Select--", "a lot", "a little"],
+        //     sprinkles: ["What kind of sprinkles?", "--Select--", "rainbow", "chocolate"],
+        //     'whipped cream': ["Chocolate flakes?", "--Select--", "yes", "no"],
+        //     milk: ["What type of milk?", "--Select--", "fat-free", "whole"],
+        //     'orange juice': ["Are you a psycho?", "--Select--", "yep", "absolutely"],
+        //     marshmallows: ["What type of marshmallows?", "--Select--", "hat", "rabbit"],
+        //     'rice cakes': ["Alphabet cereal or normal?", "--Select--", "alphabet", "normal"],
+        // }
+
+        // var end = {
+        //     cinnamon: ["You got a regular waffle with cinnamon butter!", "assets/breakfast.png"],
+        //     normal: ["You got a regular waffle with normal butter!", "assets/breakfast.png"],
+        //     'a lot': ["You got a regular waffle with a lot of syrup!", "assets/breakfast.png"],
+        //     'a little': ["You got a regular waffle with a little syrup!", "assets/breakfast.png"],
+        //     rainbow: ["You got a chocolate chip waffle with rainbow sprinkles!", "assets/breakfast.png"],
+        //     chocolate: ["You got a chocolate chip waffle with chocolate sprinkles!", "assets/breakfast.png"],
+        //     yes: ["You got a chocolate chip waffle with whipped cream and chocolate shavings!", "assets/breakfast.png"],
+        //     no: ["You got a chocolate chip waffle with whipped cream and no chocolate shavings!", "assets/breakfast.png"],
+        //     'fat-free': ["You got a bowl of cheerios with fat free milk!", "assets/breakfast.png"],
+        //     whole: ["You got a bowl of cheerios with whole milk!", "assets/breakfast.png"],
+        //     yep: ["You got a bowl of cheerios with orange juice, you psycho", "assets/breakfast.png"],
+        //     absolutely: ["You got a bowl of cheerios with orange juice, you absolute psycho", "assets/breakfast.png"],
+        //     hat: ["You got a bowl of lucky charms with hat marshmallows!", "assets/breakfast.png"],
+        //     rabbit: ["You got a bowl of lucky charms with rabbit marshmallows!", "assets/breakfast.png"],
+        //     alphabet: ["You got a bowl of lucky charms with alphabet cereal!", "assets/breakfast.png"],
+        //     normal: ["You got a bowl of lucky charms with regular cereal!", "assets/breakfast.png"],
+        // }
+        
+
+        //create the form
+        var form = document.createElement('form');
+            form.id = 'form';
+
+
+        // function to make the first select option
+        function first(){
+            let h1 = document.createElement('h1');
+            let title = document.createTextNode(data.first[0]);
+            h1.appendChild(title);
+            let p = document.createElement('p');
+            let text = document.createTextNode(data.first[1]);
+            p.appendChild(text);
+            form.appendChild(p);
+            let select = document.createElement('select');
+            select.setAttribute('onchange', 'makeNew(this)')
+            for(let i = 2; i < data.first.length; i++){
+                let op = document.createElement('option');
+                op.value = data.first[i];
+                let upper = data.first[i].charAt(0);
+                let rest = data.first[i].substring(1, data.first[i].length);
+                let whole = upper.toUpperCase() + rest;
+                let t = document.createTextNode(whole);
+                op.appendChild(t);
+                select.appendChild(op);
+            }
+            form.appendChild(select);
+            document.getElementById('first').appendChild(h1);
+            document.getElementById('first').appendChild(form);
+        }
+        
+        // function that makes the fade in animation
+        function fade(dom){
+            let opa = parseFloat(dom.style.opacity)
+            if(opa <= 1){
+                dom.style.opacity = opa + .01;
+                requestAnimationFrame(function() {fade(dom)});
+            }
+        }
+
+
+        // function that makes each following select set
+        function makeNew(dom){
+            if(dom.value in data || dom.value == "--Select--"){
+                while(document.getElementById('result').firstChild){
+                    document.getElementById('result').removeChild(document.getElementById('result').lastChild);
+                    document.getElementById('result').style.backgroundColor = "";
+                }
+                while(document.getElementById('info').firstChild){
+                    document.getElementById('info').removeChild(document.getElementById('info').lastChild);
+                    document.getElementById('info').style.backgroundColor = "";
+                }
+                let select = document.createElement('select');
+                select.style.opacity = "0";
+                select.setAttribute('onchange', 'makeNew(this)');
+                while(form.lastChild != dom){
+                    form.removeChild(form.lastChild);
+                }
+                makeSelect(dom.value, select);
+                let p = document.createElement('p');
+                let text = document.createTextNode(data[dom.value][0]);
+                p.appendChild(text);
+                p.style.opacity = "0";
+                form.appendChild(p);
+                form.appendChild(select);
+                document.getElementById('first').appendChild(form);
+                requestAnimationFrame(function() {fade(document.getElementById("form").lastChild)});
+                requestAnimationFrame(function() {fade(document.getElementById("form").lastChild.previousSibling)});
+            } else {
+                restOfPage(dom.value);
+            }
+        }
+
+        // helper function to reduce code when creating the options for the select
+        function makeSelect(val, select){
+            for(let i = 1; i < data[val].length; i++){
+                let op = document.createElement('option');
+                op.value = data[val][i];
+                let upper = data[val][i].charAt(0);
+                let rest = data[val][i].substring(1, data[val][i].length);
+                let whole = upper.toUpperCase() + rest;
+                let t = document.createTextNode(whole);
+                op.appendChild(t);
+                select.appendChild(op);
+            }
+        }
+
+        // makes the rest of the page when the end option is hit
+        function restOfPage(val){
+            while(document.getElementById('result').firstChild){
+                document.getElementById('result').removeChild(document.getElementById('result').lastChild);
+            }
+            let p = document.createElement('h1');
+            let text = document.createTextNode(end[val][0]);
+            p.appendChild(text);
+            let img = document.createElement('img');
+            document.getElementById('result').style.opacity = "0";
+            requestAnimationFrame(function() {fade(document.getElementById('result'))});
+            let result = val;
+            img.src = end[val][1];
+            document.getElementById('result').appendChild(img);
+            document.getElementById('result').appendChild(p);
+            document.getElementById('result').style.backgroundColor = 'lightgrey';
+            document.getElementById('info').style.backgroundColor = '#abe1ea'
+            while(document.getElementById('info').firstChild){
+                document.getElementById('info').removeChild(document.getElementById('info').lastChild);
+            }
+            makeNewForm();
+            document.getElementById('info').style.opacity = "0";
+            requestAnimationFrame(function() {fade(document.getElementById('info'))});
+        }
+
+        // makes the user information form
+        function makeNewForm(){
+            let h2 = document.createElement('h1');
+            let formText = document.createTextNode("Want your results?");
+            h2.appendChild(formText);
+            let newForm = document.createElement('form');
+            newForm.id = 'newForm';
+            newForm.action = "";
+            newForm.method = "get";
+            newForm.setAttribute('onsubmit', 'return validate()');
+            newForm.appendChild(h2);
+            let fName = document.createElement('input');
+            fName.type = "text";
+            fName.id = "firstName";
+            fName.name = "f";
+            fName.placeholder = "First name";
+            let lName = document.createElement('input');
+            lName.type = "text";
+            lName.id = "lastName";
+            lName.name = "l";
+            lName.placeholder = "Last name";
+            let email = document.createElement('input');
+            email.type = "text";
+            email.id = "email";
+            email.name = "e";
+            email.placeholder = "Email";
+            document.cookie = "form=formTest";
+            if(document.cookie.indexOf("form") != -1){
+                fName.value = GetCookie("First name");
+                lName.value = GetCookie("Last name");
+                email.value = GetCookie("Email");
+            } else {
+                fName.value = localStorage.getItem('firstName');
+                lName.value = localStorage.getItem('lastName');
+                email.value = localStorage.getItem('email');
+            }
+            let submit = document.createElement('input');
+            submit.type = "submit";
+            submit.value = "Submit";
+            newForm.appendChild(fName);
+            newForm.appendChild(document.createElement('br'));
+            newForm.appendChild(lName);
+            newForm.appendChild(document.createElement('br'));
+            newForm.appendChild(email);
+            newForm.appendChild(document.createElement('br'));
+            newForm.appendChild(submit);
+            document.getElementById('info').appendChild(newForm);
+        }
+
+        // js validation and create cookies / use localStorage that holds the user's information
+        function validate(){
+                let ret = true;
+                document.cookie = "test=testing";
+                if(!document.getElementById("firstName").value){
+                    document.getElementById("firstName").style.backgroundColor = 'pink';
+                    ret = false;
+                } else {
+                    if(document.cookie.indexOf("test")!=1){
+                        newCookie = SetCookie("First name", document.getElementById("firstName").value, 3000);
+                    }else{
+                        localStorage.setItem('firstName', document.getElementById("firstName").value);
+                    }
+                }
+                if(document.getElementById("lastName").value == ''){
+                    document.getElementById("lastName").style.backgroundColor = 'pink';
+                    ret = false;
+                }
+                else {
+                    if(document.cookie.indexOf("test")!=1){
+                        newCookie = SetCookie("Last name", document.getElementById("lastName").value, 3000);
+                    }else{
+                        localStorage.setItem('lastName', document.getElementById("lastName").value);
+                    }
+                }
+                if(document.getElementById("email").value == ''){
+                    document.getElementById("email").style.backgroundColor = 'pink';
+                    ret = false;
+                } else {
+                    if(document.cookie.indexOf("test")!=1){
+                        newCookie = SetCookie("Email", document.getElementById("email").value, 3000);
+                    }else{
+                        localStorage.setItem('email', document.getElementById("email").value);
+                    }
+                }
+                return ret;
+            }
+    </script>
+
+</head>
+
+<body id="gridbox" onload="first();">
+    <div id="first">
+
+    </div>
+    <div id="result">
+
+    </div>
+    <div id="info">
+        
+    </div>
+</body>
+
+</html>

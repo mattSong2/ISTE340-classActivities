@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title></title>
+        <script>
+            function val(){
+                //look for something first
+                let ret = true;
+                if(document.getElementById("first").value == ''){
+                    document.getElementById("first").style.backgroundColor = 'red';
+                    //send back false
+                    ret = false;
+                }
+                if(document.getElementById("last").value == ''){
+                    document.getElementById("last").style.backgroundColor = 'red';
+                    //send back false
+                    ret = false;
+                }
+                return ret;
+            }
+        </script>
+    </head>
+    <body>
+        <form action="page.php" method="get" onsubmit="return val()">
+            first:<input type="text" name="f" id="first"/><br>
+            last:<input type="text" name="l" id="last"/><br>
+            <input type="submit" value="go"/>
+        </form>
+    </body>
+</html>

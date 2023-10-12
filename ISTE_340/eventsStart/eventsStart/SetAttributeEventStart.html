@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script>
+			function init(){
+				let button = document.createElement('button');
+				button.setAttribute('id', 'test');
+				button.setAttribute('onclick', 'test()')
+				button.onmouseleave = test;
+				button.appendChild(document.createTextNode("push me"));
+				document.getElementsByTagName('body')[0].appendChild(button);
+			}
+
+			function test(){
+				console.log("what is this? ", this);
+			}
+		</script>
+	</head>
+	<body onload="init()">
+
+	</body>
+</html>

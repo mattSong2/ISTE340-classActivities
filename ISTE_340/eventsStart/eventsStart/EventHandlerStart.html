@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Events</title>
+	<script type="text/javascript">
+	//For Image 1 --------------------------------------------------------------------
+	//All as HTML attributes
+	// -since the call to 'this' is within the attribute, it refers to the element.
+	function simpleReturn(){
+		return this;
+	}
+	
+	//For Image 2 --------------------------------------------------------------------
+	//assign an event to Image 2
+	function init(){
+		let dom = document.getElementsByTagName('img')[1];
+		dom.onmouseover = test;
+		dom.onclick = function() { test2('hallo wrapper');};
+	}
+
+	function test(){
+		console.log('hallo js prop event', this);
+	}
+
+	function test2(arg){
+		console.log(arg, this);
+	}
+	  
+	  
+    //For Image 3 --------------------------------------------------------------------
+	//attach an event to Image 3
+	function init2(){
+		//addEventListener
+		let dom = document.images[2];
+		//must be on the page
+		dom.addEventListener('click', test, {once:true}, false);
+		dom.addEventListener('click', function(){test2('from listener')}, true);
+	}
+
+
+	</script>
+</head>
+<body onload="init(); init2()">
+
+  <h1>Image 1 (html attribute):</h1><img src="pic.jpg" onclick="console.log('hallo attribute', this, simpleReturn())"/>
+  
+  <h1>Image 2 (JavaScript property):</h1><img src="pic.jpg"/>
+  
+  <h1>Image 3 (JavaScript listener):</h1><img src="pic.jpg"/>
+
+</body>
+</html>

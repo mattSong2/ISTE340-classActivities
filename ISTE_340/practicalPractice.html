@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Practice</title>
+    <script>
+        //methods for localStorage:
+        //set item, get item, clear item, clear
+        function storage(){
+            console.log(localStorage);
+        }
+
+        /*DHTML rules
+            1. dom.style.color="aqua"
+            2. dom.style.fontFamily = 'times' --- NOT dom.style.font-family = 'times' ... drop the hyphen  
+            3. EVERYTHING we get or set is a string
+            4. INCLUDE UNITS  
+        */
+        function go(id, end, increment){
+            let dom = document.getElementById(id);
+            if(parseInt(dom.style.left) < end){
+                dom.style.left = parseInt(dom.style.left) + increment + 'px';
+                //if parameters are needed, must have a wrapper function
+                requestAnimationFrame(function () {go( id, end, increment); });
+            }
+        }
+
+        // DOM getter methods
+        // document.getElementById('id').attr = '';
+        // document.getElementsByTagName('body')[0].attr = '';
+        // documnet.getElementsByName('fred')[2].attr = '';
+        // document.getElementsByClassName('warning')[1].attr = '';
+        // if needed to add to all of certain tag names / class names, must use a loop
+
+        // document.images[2]
+        // documnet.forms[3].elements[3] --- can loop elements.length to get all elements \\
+        
+        function changeId(){
+            document.getElementById('test2').style.color = 'red';
+            document.getElementById('test2').firstChild.nodeValue="fred";
+            // if firstchild doesnt exist / doesnt work, can use appendchild
+        }
+
+        /*
+        dynamic creation
+
+        createElement
+        setAttribute
+        createTextNode
+        appendChild
+        insertBefore(element, child of parent to go in front of)
+        removeChild(child of parent to kill)
+        replaceChild(element, child of parent to kill / replace)
+        thingToCopy.cloneNode(true/false) true=copy everything, false=just the shell (not the stuff inside of it)
+        */
+        
+        function dynamo(){
+            var h = document.createElement('h1');
+            h.id= "fred";
+            h.setAttribute('style', 'color:red');
+            h.appendChild(document.createTextNode('hi mom'));
+            //<h1 id='fred' style='color:red'> hi mom </h1>
+
+            document.getElementsByTagName('body')[0].insertBefore(h, 
+            document.getElementsByTagName('body')[0].firstChild);
+        }
+
+        /*
+            events
+
+            onclick="dothis(this)"
+        */
+        //html attribute event
+        function doIt(dom){
+            dom.firstChild.nodeValue="test";
+        }
+
+        //js property event
+        function doThat(dom){
+            var h = document.createElement('h1');
+            h.setAttribute('style', 'color:blue');
+            h.appendChild(document.createTextNode("mother"));
+            //h.onclick = doOther
+            //h.onclick = function() {doOther2('h1');}
+        }
+
+        //function doOther(){
+            //console.log(this) = h1
+        //}
+
+        //function doOther(dom){
+            //console.log(this) = window
+        //}
+
+        //event listener
+        /*
+            document.getElementById('test').addEventListener('click', doThis);
+            can add multiple, but will run it order of being read
+            will return the object that it is attached to
+            need to wrap the function if there are parameters, but it will not return the object it is attached to
+            ^^ happens anytime you use a wrapper class
+        */
+
+    </script>
+</head>
+
+
+
+
+
+
+<body onload="storage(); dynamo();">
+    <!-- forms need names -->
+    <form action="page.php" method="get" onsubmit="returnVal();">
+        name: <input type="text" name="firstName"/>
+        <input type="submit" value="go" name="sub"/>
+    </form>
+    <!-- need a style for requestAnimationFrame to work -->
+    <!-- won't move due to default positioning of static, need to change-->
+    <p id="test" onclick="requestAnimationFrame( function () { go('test', 400, 7);})  " style="left:0px; position:relative;">hi</p>
+    <p id="test2" onclick="changeId()">hello</p>
+    <p onclick="doIt(this)">hola</p>
+</body>
+
+
+</html>
